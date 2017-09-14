@@ -29,3 +29,15 @@
 `Initialize client`  
 `Initialize server`  
 `Initialize client-server`  
+
+## Known issues
+
+Meteor doesn't work with `ionic-native` >=3, the issue is that they switched to `es2015` modules syntax and somehow Meteor (even 1.6) doesn't seem to support it: https://pastebin.com/3vnMRWQ6  
+I compiled a local copy of `ionic-native` 4.2.1 with `commonjs` modules and it works flawlessly (I included the tarballs in the repo), so the issue is indeed due to `es2015` modules.  
+Since Meteor is supposed to support `es2015` imports (especially Meteor 1.6), maybe the issue lies in `barbatus:typescript`?  
+
+Meteor isn't compatible with Angular 5 (even 1.6): https://pastebin.com/7mteYTS0  
+Angular 4 works flawlessly and this is the reason why the repo is based on 4.3.6.  
+
+Another bug is specific to Meteor 1.6, somehow it doesn't want to install Cordova plugins (like `meteor add cordova:cordova-plugin-whitelist@1.3.2`): https://pastebin.com/5mmCU89z  
+Meteor 1.5 works flawlessly and this is the reason why the repo is based on 1.5.2.  
