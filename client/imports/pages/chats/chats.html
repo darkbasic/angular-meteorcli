@@ -33,4 +33,10 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <ion-list>
+    <div>MeteorReactive</div>
+    <div *ngFor="let chatReactive of chatsReactive">
+      <p>Name: {{chatReactive.title}}</p>
+    </div>
+  </ion-list>
 </ion-content>

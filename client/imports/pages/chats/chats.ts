@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import * as Moment from 'moment';
 import { Observable } from 'rxjs';
-import { Chats, Messages } from '../../../../imports/collections';
+import { Chats, Messages, ChatsReactive } from '../../../../imports/collections';
 import { Chat, MessageType } from '../../../../imports/models';
 import template from './chats.html';
+
+import { MeteorReactive } from 'angular2-meteor';
 
 @Component({
   template
 })
-export class ChatsPage implements OnInit {
+export class ChatsPage extends MeteorReactive implements OnInit {
   chats;
+  chatsReactive: Mongo.Cursor<Chat>;
 
   constructor() {
+    super();
+
+    this.subscribe('chats-reactive-subscription');
+    this.chatsReactive = ChatsReactive.find();
+    this.autorun(() => {
+      console.log(this.chatsReactive.fetch());
+    });
   }
 
   ngOnInit() {
